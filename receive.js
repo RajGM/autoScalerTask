@@ -1,5 +1,4 @@
 import { connect } from 'amqplib';
-import http from 'http';
 import axios from 'axios';
 
 const connection = await connect('amqp://localhost');
