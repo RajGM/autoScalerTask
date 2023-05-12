@@ -10,13 +10,6 @@ const final = JSON.parse(string);
 
 setInterval(function () {
 
-    console.log("data: ", data);
-    console.log("type of data: ", typeof data);
-    console.log("string: ", string);
-    console.log("type of string: ", typeof string);
-    console.log("final: ", final);
-    console.log("type of final: ", typeof final);
-
     axios.post('http://localhost:3000/data', data)
         .then(response => {
             console.log(response.data);
@@ -25,4 +18,4 @@ setInterval(function () {
             console.error(error);
         });
 
-}, 1000); // 500 milliseconds = .5 seconds
+}, 1); // 500 milliseconds = .5 seconds

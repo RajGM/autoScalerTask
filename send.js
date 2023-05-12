@@ -20,4 +20,4 @@ let msgCount = 0;
 setInterval(function() {
     // your function code here
     channel.sendToQueue(queue, Buffer.from(message/*+msgCount++*/));
-  }, 1000); // 500 milliseconds = .5 seconds
+  }, 1); // 500 milliseconds = .5 seconds
