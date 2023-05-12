@@ -1,6 +1,5 @@
 import { connect } from 'amqplib';
 import http from 'http';
-import request from 'request';
 
 const connection = await connect('amqp://localhost');
 
@@ -20,10 +19,7 @@ channel.consume(queue, (message) => {
         port: 3000,
         path: '/data',
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': postData.length
-        }
+        json: JSON.parse(postData)
     };
     const req = http.request(options, res => {
         console.log(`statusCode: ${res.statusCode}`);
