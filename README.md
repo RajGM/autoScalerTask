@@ -10,3 +10,7 @@
 ### kubectl autoscale deployment knote --cpu-percent=10 --min=3 --max=10
 
 ### 
+
+![Dashboard](./images/dashboard.jpg)
+![Terminals](./images/terminals.jpg)
+![DOS](./images/DDOS.jpg)
