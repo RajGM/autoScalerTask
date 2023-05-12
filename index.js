@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 
 app.post('/data', bodyParser.json() ,(req, res) => {
     const {name,email} = req.body;
-    console.log("data ", name);
+    console.log("name ", name);
+    console.log("email ", email)
     res.status(200).json({ message: "success" });
 });
 

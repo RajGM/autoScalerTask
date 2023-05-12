@@ -1,5 +1,6 @@
 import { connect } from 'amqplib';
 import http from 'http';
+import axios from 'axios';
 
 const connection = await connect('amqp://localhost');
 
@@ -10,29 +11,21 @@ const queue = 'Messages';
 await channel.assertQueue(queue, { durable: false });
 
 channel.consume(queue, (message) => {
-    console.log(`Received message: ${message.content.toString()}`);
+    
+    const data = message.content.toString();
+    console.log("data: ", data);
+    console.log("type of data: ", typeof data);
+    const final = JSON.parse(data);
+    console.log("final: ", final);
+    console.log("type of final: ", typeof final);
 
-    const dataFromQueue = message.content.toString();
-    const postData = JSON.stringify(dataFromQueue);
-    const options = {
-        hostname: 'localhost',
-        port: 3000,
-        path: '/data',
-        method: 'POST',
-        json: JSON.parse(postData)
-    };
-    const req = http.request(options, res => {
-        console.log(`statusCode: ${res.statusCode}`);
-
-        res.on('data', d => {
-            process.stdout.write(d);
+    axios.post('http://localhost:3000/data', final)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
         });
-    });
-    req.on('error', error => {
-        console.error(error);
-    });
-    req.write(postData);
-    req.end();
 
 
 });
