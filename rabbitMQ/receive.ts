@@ -9,7 +9,7 @@ const queue = 'Messages';
 
 await channel.assertQueue(queue, { durable: false });
 
-channel.consume(queue, (message) => {
+channel.consume(queue, (message:string ) => {
     
     const data = message.content.toString();
     console.log("data: ", data);
